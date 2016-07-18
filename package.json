@@ -1,10 +1,10 @@
 {
   "name": "linter-jslinter",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "JSLint plugin for Atom Linter",
   "keywords": [
-      "jslint",
-      "jslinter"
+    "jslint",
+    "jslinter"
   ],
   "repository": "tensor5/linter-jslinter",
   "license": "MIT",
