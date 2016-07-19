@@ -73,7 +73,7 @@ module.exports = {
 
             return {
                 type: "Error",
-                text: warn.message.slice(0, -1),
+                text: warn.message.slice(0, -1),  // drop trailing "."
                 filePath: pathname,
                 range: [[row, col], [row, col + len]]
             };
