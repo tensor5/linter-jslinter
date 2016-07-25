@@ -34,11 +34,13 @@ module.exports = {
     },
     activate: function activate() {
         "use strict";
-        if (atom.config.get("linter-jslinter.nodeModulesDir") === "") {
-            const root = require("child_process")
-                .execFileSync("npm", ["root", "-g"], {encoding: "utf8"})
-                .trimRight();
-            atom.config.set("linter-jslinter.nodeModulesDir", root);
+        if (atom.config.get("linter-jslinter.useGlobalJSLinter")) {
+            if (atom.config.get("linter-jslinter.nodeModulesDir") === "") {
+                const root = require("child_process")
+                    .execFileSync("npm", ["root", "-g"], {encoding: "utf8"})
+                    .trimRight();
+                atom.config.set("linter-jslinter.nodeModulesDir", root);
+            }
         }
     },
     provideLinter: function provideLinter() {
