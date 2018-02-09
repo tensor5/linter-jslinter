@@ -6,7 +6,7 @@
     "jslint",
     "jslinter"
   ],
-  "repository": "tensor5/linter-jslinter",
+  "repository": "https://github.com/tensor5/linter-jslinter",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
