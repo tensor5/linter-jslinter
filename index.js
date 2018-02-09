@@ -91,7 +91,7 @@ module.exports = {
 
         return {
             name: "JSLint",
-            grammarScopes: ["source.js", "source.json"],
+            grammarScopes: ["source.js", "source.js.jsx", "source.json"],
             scope: "file",
             lintsOnChange: true,
             lint: function lint(textEditor) {
