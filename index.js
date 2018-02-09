@@ -74,10 +74,12 @@ module.exports = {
                 : 1;
 
             return {
-                type: "Error",
-                text: warn.message.slice(0, -1),  // drop trailing "."
-                filePath: pathname,
-                range: [[row, col], [row, col + len]]
+                severity: "error",
+                excerpt: warn.message.slice(0, -1),  // drop trailing "."
+                location: {
+                  file: pathname,
+                  position: [[row, col], [row, col + len]]
+                }
             };
         }
 
@@ -85,7 +87,7 @@ module.exports = {
             name: "JSLint",
             grammarScopes: ["source.js", "source.json"],
             scope: "file",
-            lintOnFly: true,
+            lintsOnChange: true,
             lint: function lint(textEditor) {
                 const [projectDir] = atom.project
                     .relativizePath(textEditor.getPath());
