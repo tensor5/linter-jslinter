@@ -1,18 +1,19 @@
 /*jslint
-    browser, es6
+    browser
 */
 
 /*global
-    __dirname, atom, module, require
+    atom, module, require
 */
 
 /*property
     a, activate, addWarning, bind, column, config, default, description,
-    detail, dirname, dismissable, encoding, execFileSync, exports, filePath,
-    get, getPath, getText, grammarScopes, join, jslint, length, line, lint,
-    lintOnFly, map, message, name, nodeModulesDir, notifications, project,
-    provideLinter, range, readConf, relativizePath, scope, set, slice, text,
-    then, title, trimRight, type, useGlobalJSLinter, warnings
+    detail, dirname, dismissable, encoding, excerpt, execFileSync, exports,
+    file, get, getPath, getText, grammarScopes, join, jslint, length, line,
+    lint, lintsOnChange, location, map, message, name, nodeModulesDir,
+    notifications, position, project, provideLinter, readConf, relativizePath,
+    scope, set, severity, slice, then, title, trimRight, type,
+    useGlobalJSLinter, warnings
 */
 
 module.exports = {
@@ -48,12 +49,17 @@ module.exports = {
         const useGlobal = atom.config.get("linter-jslinter.useGlobalJSLinter");
         const path = require("path");
         let globalJSlinter;
+        let e1;
 
         if (useGlobal) {
             try {
                 const root = atom.config.get("linter-jslinter.nodeModulesDir");
                 globalJSlinter = require(path.join(root, "jslinter"));
-            } catch (e1) {
+            } catch (e) {
+                e1 = e;
+            }
+
+            if (e1) {
                 try {
                     globalJSlinter = require("jslinter");
                 } catch (e2) {
@@ -77,8 +83,8 @@ module.exports = {
                 severity: "error",
                 excerpt: warn.message.slice(0, -1),  // drop trailing "."
                 location: {
-                  file: pathname,
-                  position: [[row, col], [row, col + len]]
+                    file: pathname,
+                    position: [[row, col], [row, col + len]]
                 }
             };
         }
